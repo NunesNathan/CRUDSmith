@@ -1,5 +1,8 @@
-using CRUDSmith.Data;
 using Microsoft.EntityFrameworkCore;
+
+using CRUDSmith.Data;
+using CRUDSmith.Repositories;
+
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -15,6 +18,8 @@ builder.Services.AddDbContext<WeaponDbContext>(options =>
 {
   options.UseNpgsql(builder.Configuration.GetConnectionString("Default"));
 });
+
+builder.Services.AddScoped<IWeaponRepository, WeaponRepository>();
 
 var app = builder.Build();
 
