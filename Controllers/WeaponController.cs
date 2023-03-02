@@ -65,5 +65,15 @@ namespace CRUDSmith.Controllers
         ? Ok(gw)
         : BadRequest("Wrong parameters");
     }
+
+    [HttpDelete("{id}")]
+    public async Task<IActionResult> removeWeapon(int id)
+    {
+      this.repository.removeWeapon(id);
+
+      return await this.repository.SaveChangesAsync()
+        ? NoContent()
+        : NotFound("Weapon not found");
+    }
   }
 }

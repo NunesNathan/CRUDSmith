@@ -30,9 +30,11 @@ namespace CRUDSmith.Repositories
       return await this.ctx.weapons.ToListAsync();
     }
 
-    public void removeWeapon(int id)
+    public async void removeWeapon(int id)
     {
-      throw new NotImplementedException();
+      var weapon = this.ctx.weapons.Where(x => x.Id == id).Single();
+
+      this.ctx.weapons.Remove(weapon);
     }
     public void updateWeapon(int id, Weapon weapon)
     {
