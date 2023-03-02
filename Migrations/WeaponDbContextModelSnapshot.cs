@@ -10,62 +10,64 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 namespace projetos.Migrations
 {
-    [DbContext(typeof(WeaponDbContext))]
-    partial class WeaponDbContextModelSnapshot : ModelSnapshot
+  [DbContext(typeof(WeaponDbContext))]
+  partial class WeaponDbContextModelSnapshot : ModelSnapshot
+  {
+    protected override void BuildModel(ModelBuilder modelBuilder)
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
-        {
 #pragma warning disable 612, 618
-            modelBuilder
-                .HasAnnotation("ProductVersion", "7.0.2")
-                .HasAnnotation("Relational:MaxIdentifierLength", 63);
+      modelBuilder
+          .HasAnnotation("ProductVersion", "7.0.2")
+          .HasAnnotation("Relational:MaxIdentifierLength", 63);
 
-            NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
+      NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
 
-            modelBuilder.Entity("CRUDSmith.Models.Weapon", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("integer");
+      modelBuilder.Entity("CRUDSmith.Models.Weapon", b =>
+          {
+            b.Property<int>("Id")
+                      .ValueGeneratedOnAdd()
+                      .HasColumnType("integer");
 
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+            NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
-                    b.Property<int>("BaseDamage")
-                        .HasColumnType("integer")
-                        .HasColumnName("base_damage");
+            b.Property<int>("BaseDamage")
+                      .HasColumnType("integer")
+                      .HasColumnName("base_damage");
 
-                    b.Property<int>("BonusDamage")
-                        .HasColumnType("integer")
-                        .HasColumnName("bonus_damage");
+            b.Property<int>("BonusDamage")
+                      .HasColumnType("integer")
+                      .HasColumnName("bonus_damage");
 
-                    b.Property<string>("BonusDamegeType")
-                        .IsRequired()
-                        .HasColumnType("text")
-                        .HasColumnName("bonus_damage_type");
+            b.Property<string>("BonusDamegeType")
+                      .IsRequired()
+                      .HasColumnType("text")
+                      .HasColumnName("bonus_damage_type");
 
-                    b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone")
-                        .HasColumnName("created_at");
+            b.Property<DateTime>("CreatedAt")
+                      .ValueGeneratedOnAdd()
+                      .HasColumnType("timestamp with time zone")
+                      .HasColumnName("created_at")
+                      .HasDefaultValueSql("NOW()");
 
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("text");
+            b.Property<string>("Name")
+                      .IsRequired()
+                      .HasColumnType("text");
 
-                    b.Property<string>("SlotToUse")
-                        .IsRequired()
-                        .HasColumnType("text")
-                        .HasColumnName("slot_to_use");
+            b.Property<string>("SlotToUse")
+                      .IsRequired()
+                      .HasColumnType("text")
+                      .HasColumnName("slot_to_use");
 
-                    b.Property<string>("SpecialBonusGiven")
-                        .IsRequired()
-                        .HasColumnType("text")
-                        .HasColumnName("special_bonus_given");
+            b.Property<string>("SpecialBonusGiven")
+                      .IsRequired()
+                      .HasColumnType("text")
+                      .HasColumnName("special_bonus_given");
 
-                    b.HasKey("Id");
+            b.HasKey("Id");
 
-                    b.ToTable("weapons", (string)null);
-                });
+            b.ToTable("weapons", (string)null);
+          });
 #pragma warning restore 612, 618
-        }
     }
+  }
 }
