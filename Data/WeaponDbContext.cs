@@ -1,5 +1,7 @@
 using Microsoft.EntityFrameworkCore;
+
 using CRUDSmith.Models;
+
 
 namespace CRUDSmith.Data
 {
@@ -17,7 +19,7 @@ namespace CRUDSmith.Data
       model.ToTable("weapons");
       model.HasKey(x => x.Id);
       model.Property(x => x.Id).ValueGeneratedOnAdd().IsRequired();
-      model.Property(x => x.SlotToUse).HasColumnName("slot_to_use").IsRequired();
+      model.Property(x => x.SlotToUse).HasColumnName("slot_to_use").IsRequired(); 
       model.Property(x => x.BaseDamage).HasColumnName("base_damage").IsRequired();
       model.Property(x => x.BonusDamage).HasColumnName("bonus_damage").IsRequired();
       model.Property(x => x.BonusDamegeType).HasColumnName("bonus_damage_type").IsRequired();
