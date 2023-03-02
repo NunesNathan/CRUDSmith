@@ -19,9 +19,10 @@ namespace CRUDSmith.Repositories
       await this.ctx.weapons.AddAsync(weapon);
     }
 
-    public Task<Weapon> GetWeapon(int id)
+    public async Task<Weapon> GetWeapon(int id)
     {
-      throw new NotImplementedException();
+      return await this.ctx.weapons
+        .Where(x => x.Id == id).FirstOrDefaultAsync();
     }
 
     public async Task<IEnumerable<Weapon>> GetWeapons()

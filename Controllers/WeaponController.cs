@@ -17,6 +17,16 @@ namespace CRUDSmith.Controllers
       this.repository = repository;
     }
 
+    [HttpPost]
+    public async Task<IActionResult> AddWeapon(Weapon weapon)
+    {
+      this.repository.addWeapon(weapon);
+
+      return await this.repository.SaveChangesAsync()
+        ? Ok(weapon)
+        : BadRequest("Wrong parameters");
+    }
+
     [HttpGet]
     public async Task<IActionResult> GetWeapons()
     {
@@ -27,15 +37,14 @@ namespace CRUDSmith.Controllers
         : BadRequest();
     }
 
-    [HttpPost]
-    public async Task<IActionResult> AddWeapon(Weapon weapon)
+    [HttpGet("{id}")]
+    public async Task<IActionResult> GetWeapon(int id)
     {
-      this.repository.addWeapon(weapon);
+      var weapons = await this.repository.GetWeapon(id);
 
-      return await this.repository.SaveChangesAsync()
-        ? Ok(weapon.Id)
-        : BadRequest();
-
+      return weapons != null
+        ? Ok(weapons)
+        : NotFound("Weapon not found");
     }
   }
 }
