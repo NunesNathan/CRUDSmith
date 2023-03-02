@@ -6,7 +6,6 @@ namespace CRUDSmith.Models
     public string Name { get; set; }
     public string SpecialBonusGiven { get; set; }
     public string SlotToUse { get; set; }
-
-    public DateTime CreatedAt { get; set; }
+    public DateTime? CreatedAt { get; set; }
   }
 }

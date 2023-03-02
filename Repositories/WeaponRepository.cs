@@ -36,7 +36,7 @@ namespace CRUDSmith.Repositories
     }
     public void updateWeapon(int id, Weapon weapon)
     {
-      throw new NotImplementedException();
+      this.ctx.weapons.Update(weapon);
     }
 
     public async Task<bool> SaveChangesAsync()

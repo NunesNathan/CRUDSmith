@@ -40,11 +40,30 @@ namespace CRUDSmith.Controllers
     [HttpGet("{id}")]
     public async Task<IActionResult> GetWeapon(int id)
     {
-      var weapons = await this.repository.GetWeapon(id);
+      var weapon = await this.repository.GetWeapon(id);
 
-      return weapons != null
-        ? Ok(weapons)
+      return weapon != null
+        ? Ok(weapon)
         : NotFound("Weapon not found");
+    }
+
+    [HttpPut("{id}")]
+    public async Task<IActionResult> updateWeapon(int id, Weapon weapon)
+    {
+      var gw = await this.repository.GetWeapon(id);
+
+      if (gw == null) return NotFound("Weapon not found");
+
+      gw.Name = weapon.Name ?? gw.Name;
+      gw.BaseDamage = weapon.BaseDamage != gw.BaseDamage ? gw.BaseDamage : weapon.BaseDamage;
+      gw.BonusDamage = weapon.BonusDamage != gw.BonusDamage ? gw.BonusDamage : weapon.BonusDamage;
+      gw.BonusDamegeType = weapon.BonusDamegeType ?? gw.BonusDamegeType;
+      gw.SlotToUse = weapon.SlotToUse ?? gw.SlotToUse;
+      gw.SpecialBonusGiven = weapon.SpecialBonusGiven ?? gw.SpecialBonusGiven;
+
+      return await this.repository.SaveChangesAsync()
+        ? Ok(gw)
+        : BadRequest("Wrong parameters");
     }
   }
 }
