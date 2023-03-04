@@ -14,12 +14,13 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 
-builder.Services.AddDbContext<WeaponDbContext>(options =>
+builder.Services.AddDbContext<DataDbContext>(options =>
 {
   options.UseNpgsql(builder.Configuration.GetConnectionString("Default"));
 });
 
 builder.Services.AddScoped<IWeaponRepository, WeaponRepository>();
+builder.Services.AddScoped<IDefensiveRepository, DefensiveRepository>();
 
 var app = builder.Build();
 

@@ -7,9 +7,9 @@ namespace CRUDSmith.Repositories
 {
   public class WeaponRepository : IWeaponRepository
   {
-    private readonly WeaponDbContext ctx;
+    private readonly DataDbContext ctx;
 
-    public WeaponRepository(WeaponDbContext ctx)
+    public WeaponRepository(DataDbContext ctx)
     {
       this.ctx = ctx;
     }
