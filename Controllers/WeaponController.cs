@@ -48,7 +48,7 @@ namespace CRUDSmith.Controllers
     }
 
     [HttpPut("{id}")]
-    public async Task<IActionResult> updateWeapon(int id, Weapon weapon)
+    public async Task<IActionResult> UpdateWeapon(int id, Weapon weapon)
     {
       var gw = await this.repository.GetWeapon(id);
 
@@ -67,7 +67,7 @@ namespace CRUDSmith.Controllers
     }
 
     [HttpDelete("{id}")]
-    public async Task<IActionResult> removeWeapon(int id)
+    public async Task<IActionResult> RemoveWeapon(int id)
     {
       this.repository.removeWeapon(id);
 

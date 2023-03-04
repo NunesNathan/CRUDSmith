@@ -49,7 +49,7 @@ namespace CRUDSmith.Controllers
     }
 
     [HttpPut("{id}")]
-    public async Task<IActionResult> updateDefensive(int id, Defensive defensive)
+    public async Task<IActionResult> UpdateDefensive(int id, Defensive defensive)
     {
       var gd = await this.repository.GetDefensive(id);
 
@@ -67,7 +67,7 @@ namespace CRUDSmith.Controllers
     }
 
     [HttpDelete("{id}")]
-    public async Task<IActionResult> removeDefensive(int id)
+    public async Task<IActionResult> RemoveDefensive(int id)
     {
       this.repository.removeDefensive(id);
 
