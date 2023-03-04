@@ -11,7 +11,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 namespace projetos.Migrations
 {
-    [DbContext(typeof(WeaponDbContext))]
+    [DbContext(typeof(DataDbContext))]
     [Migration("20230302205138_updateCreatedAtOnEquipment")]
     partial class updateCreatedAtOnEquipment
     {

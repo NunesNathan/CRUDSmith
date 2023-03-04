@@ -10,8 +10,8 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 namespace projetos.Migrations
 {
-  [DbContext(typeof(WeaponDbContext))]
-  partial class WeaponDbContextModelSnapshot : ModelSnapshot
+  [DbContext(typeof(DataDbContext))]
+  partial class DataDbContextModelSnapshot : ModelSnapshot
   {
     protected override void BuildModel(ModelBuilder modelBuilder)
     {

@@ -12,8 +12,8 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace projetos.Migrations
 {
     [DbContext(typeof(DataDbContext))]
-    [Migration("20230302125643_initialCreate")]
-    partial class initialCreate
+    [Migration("20230303233521_initialDefensiveTable")]
+    partial class initialDefensiveTable
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -24,6 +24,47 @@ namespace projetos.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 63);
 
             NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
+
+            modelBuilder.Entity("CRUDSmith.Models.Defensive", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.Property<DateTime?>("CreatedAt")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("timestamp with time zone")
+                        .HasColumnName("created_at")
+                        .HasDefaultValueSql("NOW()");
+
+                    b.Property<int>("DefensiveBonus")
+                        .HasColumnType("integer")
+                        .HasColumnName("base_damage");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<int>("RequiredStrength")
+                        .HasColumnType("integer")
+                        .HasColumnName("bonus_damage");
+
+                    b.Property<string>("SlotToUse")
+                        .IsRequired()
+                        .HasColumnType("text")
+                        .HasColumnName("slot_to_use");
+
+                    b.Property<string>("SpecialBonusGiven")
+                        .IsRequired()
+                        .HasColumnType("text")
+                        .HasColumnName("special_bonus_given");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("defensives", (string)null);
+                });
 
             modelBuilder.Entity("CRUDSmith.Models.Weapon", b =>
                 {
@@ -46,9 +87,11 @@ namespace projetos.Migrations
                         .HasColumnType("text")
                         .HasColumnName("bonus_damage_type");
 
-                    b.Property<DateTime>("CreatedAt")
+                    b.Property<DateTime?>("CreatedAt")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("timestamp with time zone")
-                        .HasColumnName("created_at");
+                        .HasColumnName("created_at")
+                        .HasDefaultValueSql("NOW()");
 
                     b.Property<string>("Name")
                         .IsRequired()
